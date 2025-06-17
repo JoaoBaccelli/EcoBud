@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Perguntas</title>
+  <style>
+    /* CSS mantido igual */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+    }
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0,0,0,0.3);
+    }
+    .logo span { color: #4ce191; }
+    .left-icons {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+    }
+    .home-icon, .back-icon {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+    .menu-icon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding-bottom: 40px;
+    }
+    h1 {
+      font-size: 48px;
+      color: #397065;
+    }
+    .pergunta {
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .botao-resposta {
+      background-color: #8df5b3;
+      border: none;
+      border-radius: 20px;
+      padding: 15px 30px;
+      font-size: 20px;
+      cursor: pointer;
+      width: 320px;
+      transition: background-color 0.3s;
+    }
+    .botao-resposta:hover {
+      background-color: #72d79b;
+    }
+    .botao-resposta.correta {
+      background-color: #4ce191 !important;
+      color: white;
+      cursor: default;
+    }
+    .botao-resposta.errada {
+      background-color: #f55d5d !important;
+      color: white;
+      cursor: default;
+    }
+    .navegacao {
+      display: flex;
+      justify-content: flex-start;
+      gap: 150px;
+      width: 340px;
+      margin-top: 20px;
+    }
+    .navegacao button {
+      background-color: #d3ede7;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+    .navegacao button:hover {
+      background-color: #b5d5cc;
+    }
+    .contador {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #397065;
+    }
+    .resultado {
+      background-color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .resultado h2 {
+      font-size: 36px;
+      color: #397065;
+      margin-bottom: 10px;
+    }
+    .resultado p {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .resultado button {
+      background-color: #4ce191;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 25px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .resultado button:hover {
+      background-color: #3ac07d;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="left-icons">
+    <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+    <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+  </div>
+  <div class="logo">ECO<span>BUD</span></div>
+  <img src="imagens/opcoes.png" alt="Menu" class="menu-icon">
+</header>
+
+<main id="quiz">
+  <h1 id="titulo">Quiz 1</h1>
+  <div class="pergunta" id="textoPergunta"></div>
+
+  <div class="botoes" id="botoesResposta"></div>
+
+  <div class="navegacao">
+    <button onclick="anterior()" id="btnAnterior" style="display:none;">Anterior</button>
+    <button onclick="proximo()" id="btnProximo">Próximo</button>
+  </div>
+
+  <div class="contador" id="contador"></div>
+</main>
+
+<div id="resultado" class="resultado" style="display:none;">
+  <h2>Quiz Finalizado!</h2>
+  <p id="textoResultado"></p>
+  <button onclick="voltar()">Voltar ao Quiz</button>
+</div>
+
+<script>
+  const bancoPerguntas = [
+    { texto: "Qual a principal fonte de energia renovável?", opcoes: [
+      { texto: "Energia solar", correta: true },
+      { texto: "Energia nuclear", correta: false },
+      { texto: "Gás natural", correta: false },
+      { texto: "Carvão mineral", correta: false }
+    ]},
+    { texto: "Qual destes materiais é reciclável?", opcoes: [
+      { texto: "Espelho quebrado", correta: false },
+      { texto: "Papelão", correta: true },
+      { texto: "Papel plastificado", correta: false },
+      { texto: "Isopor sujo", correta: false }
+    ]},
+    { texto: "O que é compostagem?", opcoes: [
+      { texto: "Queima de lixo", correta: false },
+      { texto: "Transformar resíduos orgânicos em adubo", correta: true },
+      { texto: "Jogar lixo no mar", correta: false },
+      { texto: "Enterrar lixo eletrônico", correta: false }
+    ]},
+    { texto: "Qual atitude ajuda na economia de água?", opcoes: [
+      { texto: "Deixar torneira aberta", correta: false },
+      { texto: "Reutilizar água da chuva", correta: true },
+      { texto: "Tomar banhos longos", correta: false },
+      { texto: "Lavar carro com mangueira", correta: false }
+    ]},
+    { texto: "Qual gás é o principal responsável pelo efeito estufa?", opcoes: [
+      { texto: "Oxigênio", correta: false },
+      { texto: "Gás carbônico (CO₂)", correta: true },
+      { texto: "Nitrogênio", correta: false },
+      { texto: "Hélio", correta: false }
+    ]},
+    { texto: "Qual é o tempo de decomposição do plástico?", opcoes: [
+      { texto: "50 anos", correta: false },
+      { texto: "450 anos", correta: true },
+      { texto: "5 anos", correta: false },
+      { texto: "100 anos", correta: false }
+    ]},
+    { texto: "O que significa ODS?", opcoes: [
+      { texto: "Objetivos de Desenvolvimento Sustentável", correta: true },
+      { texto: "Objetivos de Desenvolvimento Social", correta: false },
+      { texto: "Ordem dos Direitos Sociais", correta: false },
+      { texto: "Organização do Desenvolvimento Sustentável", correta: false }
+    ]},
+    { texto: "Qual ação NÃO é sustentável?", opcoes: [
+      { texto: "Reciclagem", correta: false },
+      { texto: "Reflorestamento", correta: false },
+      { texto: "Desmatamento", correta: true },
+      { texto: "Economia de água", correta: false }
+    ]},
+    { texto: "Qual recurso é considerado renovável?", opcoes: [
+      { texto: "Petróleo", correta: false },
+      { texto: "Energia eólica", correta: true },
+      { texto: "Carvão", correta: false },
+      { texto: "Gás natural", correta: false }
+    ]},
+    { texto: "Qual a melhor prática para reduzir lixo?", opcoes: [
+      { texto: "Jogar lixo no mar", correta: false },
+      { texto: "Reduzir, Reutilizar e Reciclar", correta: true },
+      { texto: "Queimar lixo", correta: false },
+      { texto: "Enterrar plásticos", correta: false }
+    ]},
+    // Adicione mais 10 perguntas no mesmo formato
+    { texto: "Qual prática ajuda na economia de energia?", opcoes: [
+      { texto: "Deixar luz acesa", correta: false },
+      { texto: "Usar lâmpadas LED", correta: true },
+      { texto: "Usar chuveiro no máximo", correta: false },
+      { texto: "Deixar TV ligada", correta: false }
+    ]},
+    { texto: "O que NÃO é reciclável?", opcoes: [
+      { texto: "Garrafa PET", correta: false },
+      { texto: "Papel molhado", correta: true },
+      { texto: "Papelão", correta: false },
+      { texto: "Lata de alumínio", correta: false }
+    ]},
+    { texto: "O que é pegada de carbono?", opcoes: [
+      { texto: "Caminhar na floresta", correta: false },
+      { texto: "Quantidade de CO₂ emitido por atividades humanas", correta: true },
+      { texto: "Pisar no carvão", correta: false },
+      { texto: "Desmatamento", correta: false }
+    ]},
+    { texto: "Qual energia é limpa?", opcoes: [
+      { texto: "Carvão", correta: false },
+      { texto: "Solar", correta: true },
+      { texto: "Diesel", correta: false },
+      { texto: "Gás natural", correta: false }
+    ]},
+    { texto: "Onde jogar pilhas usadas?", opcoes: [
+      { texto: "Lixo comum", correta: false },
+      { texto: "Descarte em ponto de coleta específico", correta: true },
+      { texto: "No esgoto", correta: false },
+      { texto: "Na natureza", correta: false }
+    ]},
+    { texto: "Qual atitude reduz desperdício de alimentos?", opcoes: [
+      { texto: "Comprar além do necessário", correta: false },
+      { texto: "Planejar refeições", correta: true },
+      { texto: "Jogar sobras no lixo", correta: false },
+      { texto: "Deixar estragar na geladeira", correta: false }
+    ]},
+    { texto: "O que polui os oceanos?", opcoes: [
+      { texto: "Reciclagem", correta: false },
+      { texto: "Lixo plástico", correta: true },
+      { texto: "Reutilização", correta: false },
+      { texto: "Compostagem", correta: false }
+    ]},
+    { texto: "Qual é uma fonte de energia não renovável?", opcoes: [
+      { texto: "Hidrelétrica", correta: false },
+      { texto: "Carvão mineral", correta: true },
+      { texto: "Solar", correta: false },
+      { texto: "Eólica", correta: false }
+    ]},
+    { texto: "O que podemos fazer para combater o desmatamento?", opcoes: [
+      { texto: "Plantar árvores", correta: true },
+      { texto: "Cortar mais árvores", correta: false },
+      { texto: "Queimar florestas", correta: false },
+      { texto: "Expandir mineração", correta: false }
+    ]},
+    { texto: "Qual dos itens é biodegradável?", opcoes: [
+      { texto: "Casca de banana", correta: true },
+      { texto: "Garrafa PET", correta: false },
+      { texto: "Lata de alumínio", correta: false },
+      { texto: "Isopor", correta: false }
+    ]}
+  ];
+
+  let perguntas = [];
+  let indice = 0;
+  let acertos = 0;
+  const respondido = [];
+
+  function iniciarQuiz() {
+    perguntas = bancoPerguntas.sort(() => Math.random() - 0.5).slice(0, 5);
+    respondido.length = perguntas.length;
+    respondido.fill(false);
+    indice = 0;
+    acertos = 0;
+    carregarPergunta();
+  }
+
+  function carregarPergunta() {
+    const perguntaAtual = perguntas[indice];
+    document.getElementById('titulo').innerText = `Quiz ${indice + 1}`;
+    document.getElementById('textoPergunta').innerText = perguntaAtual.texto;
+
+    const botoesDiv = document.getElementById('botoesResposta');
+    botoesDiv.innerHTML = '';
+
+    perguntaAtual.opcoes.forEach(opcao => {
+      const botao = document.createElement('button');
+      botao.innerText = opcao.texto;
+      botao.className = 'botao-resposta';
+      botao.onclick = () => responder(botao, opcao.correta);
+      botoesDiv.appendChild(botao);
+    });
+
+    document.getElementById('contador').innerText = `${indice + 1}/5`;
+    document.getElementById('btnAnterior').style.display = indice === 0 ? 'none' : 'inline-block';
+    document.getElementById('btnProximo').innerText = indice === perguntas.length - 1 ? 'Finalizar' : 'Próximo';
+  }
+
+  function responder(botao, correta) {
+    const botoes = document.querySelectorAll('.botao-resposta');
+    botoes.forEach(b => b.disabled = true);
+
+    if (correta) {
+      botao.classList.add('correta');
+      if (!respondido[indice]) {
+        acertos++;
+        respondido[indice] = true;
+      }
+    } else {
+      botao.classList.add('errada');
+    }
+  }
+
+  function proximo() {
+    if (indice < perguntas.length - 1) {
+      indice++;
+      carregarPergunta();
+    } else {
+      mostrarResultado();
+    }
+  }
+
+  function anterior() {
+    if (indice > 0) {
+      indice--;
+      carregarPergunta();
+    }
+  }
+
+  function mostrarResultado() {
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('resultado').style.display = 'block';
+    document.getElementById('textoResultado').innerText = `Você acertou ${acertos} de ${perguntas.length} perguntas.`;
+  }
+
+  function voltar() {
+    window.location.href = 'quiz.html';
+  }
+
+  window.onload = iniciarQuiz;
+</script>
+
+</body>
+</html>

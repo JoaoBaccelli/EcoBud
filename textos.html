@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Sustentabilidade</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .home-icon, .menu-icon, .back-icon {
+      position: absolute;
+      top: 40px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .home-icon {
+      left: 40px;
+    }
+
+    .back-icon {
+      left: 100px;
+    }
+
+    .menu-icon {
+      right: 40px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      border-bottom: 2px solid #4ce191;
+    }
+
+    nav button {
+      background-color: transparent;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #397065;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    nav button.active {
+      background-color: #84f4a2;
+      color: white;
+    }
+
+    .content-section {
+      display: none;
+      max-width: 900px;
+      font-size: 22px;
+      line-height: 1.6;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 60px;
+      }
+
+      .home-icon, .menu-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+        top: 20px;
+      }
+
+      .home-icon {
+        left: 20px;
+      }
+
+      .back-icon {
+        left: 70px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav button {
+        width: 90%;
+        text-align: center;
+      }
+
+      .content-section {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+    <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Menu" class="menu-icon" id="menuIcon">
+
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </div>
+  </header>
+
+  <nav id="tabs">
+    <button class="active" data-target="sustentabilidade">O que é Sustentabilidade</button>
+    <button data-target="consumo">Consumo Consciente</button>
+    <button data-target="residuos">Gestão de Resíduos</button>
+    <button data-target="energia">Energia Sustentável</button>
+    <button data-target="mobilidade">Mobilidade Sustentável</button>
+    <button data-target="alimentacao">Alimentação Sustentável</button>
+    <button data-target="preservacao">Preservação Ambiental</button>
+    <button data-target="clima">Mudanças Climáticas</button>
+    <button data-target="urbana">Sustentabilidade Urbana</button>
+    <button data-target="digital">Sustentabilidade Digital</button>
+    <button data-target="justica">Justiça Social e Sustentabilidade</button>
+    <button data-target="politicas">Políticas Públicas e Leis Ambientais</button>
+    <button data-target="educacao">Educação Ambiental</button>
+  </nav>
+
+  <main>
+    <div id="sustentabilidade" class="content-section active">
+      <h2>🌱 O que é Sustentabilidade</h2>
+      <p>Sustentabilidade é um conceito fundamental para garantir a sobrevivência do planeta e a qualidade de vida de todas as pessoas, hoje e no futuro. Ela representa a capacidade de suprirmos nossas necessidades atuais — como alimentação, moradia, transporte e energia — sem comprometer os recursos e as condições que as futuras gerações também precisarão. Ou seja, é encontrar um equilíbrio entre viver bem agora e garantir que o mundo continue habitável e saudável para quem virá depois.
+
+Mais do que uma definição, a sustentabilidade é uma forma de pensar, agir e se relacionar com o mundo. Ela exige consciência, responsabilidade e compromisso com o meio ambiente, com a sociedade e com a economia. Esses três pilares — ambiental, social e econômico — são interdependentes. Não é possível proteger a natureza sem combater a desigualdade social, nem crescer economicamente destruindo os recursos naturais.
+
+O pilar ambiental diz respeito à preservação da natureza. É preciso conservar florestas, rios, oceanos, solo fértil e a biodiversidade. Evitar a poluição, reduzir o desmatamento e as emissões de gases de efeito estufa também são práticas sustentáveis. Já o pilar social se preocupa com o bem-estar das pessoas. Ele envolve a garantia de direitos como saúde, educação, moradia e segurança, além de inclusão, equidade e participação cidadã. Por fim, o pilar econômico busca o desenvolvimento com responsabilidade, promovendo a geração de empregos dignos, o consumo consciente e a produção eficiente, sem desperdícios.
+
+A importância da sustentabilidade se tornou cada vez mais evidente nos últimos anos. As mudanças climáticas, a escassez de água potável, a perda de espécies, o acúmulo de lixo e a poluição do ar são sinais claros de que precisamos mudar nossos hábitos e rever o modo como interagimos com o planeta. Se continuarmos consumindo como se os recursos fossem infinitos, estaremos comprometendo não só o futuro das próximas gerações, mas também a estabilidade da nossa própria vida hoje.
+
+Mas a sustentabilidade não depende apenas de grandes políticas públicas ou ações empresariais. Ela começa com pequenas atitudes no dia a dia, como separar o lixo corretamente, economizar água e energia, evitar o uso de plásticos descartáveis, optar por meios de transporte menos poluentes, valorizar produtos locais e orgânicos e repensar o consumo excessivo. Atitudes como essas, quando feitas por muitas pessoas, geram impactos reais e positivos.
+
+Ser sustentável é entender que nossas escolhas têm consequências, e que cada gesto — por menor que pareça — faz parte de um movimento maior em direção a um mundo mais equilibrado, justo e saudável. É agir com empatia, respeito e visão de futuro. A sustentabilidade é, antes de tudo, um compromisso com a vida.</p>
+    </div>
+
+    <div id="consumo" class="content-section">
+      <h2>🛍️ Consumo Consciente</h2>
+      <p>O consumo consciente é uma forma de consumir produtos, serviços e recursos de maneira mais responsável, ética e sustentável. Ele envolve refletir sobre o que compramos, por que compramos, como utilizamos e como descartamos aquilo que consumimos. Mais do que apenas uma escolha individual, o consumo consciente é um comportamento que considera os impactos sociais, ambientais e econômicos das nossas ações no dia a dia.
+
+Vivemos em uma sociedade marcada pelo consumo em excesso. Somos incentivados o tempo todo a comprar mais, mesmo quando não precisamos. Produtos são lançados com frequência, e a publicidade nos faz acreditar que a felicidade está diretamente ligada ao que possuímos. Porém, esse modelo de consumo desenfreado tem consequências sérias: desperdício de recursos naturais, aumento da poluição, degradação ambiental, exploração de trabalhadores e acúmulo de lixo.
+
+Consumir de forma consciente é, portanto, repensar nossos hábitos de consumo. É fazer perguntas antes de comprar:
+“Eu realmente preciso disso?”,
+“Esse produto foi feito de forma justa e sustentável?”,
+“Qual será o impacto ambiental desse item?”,
+“Há uma versão reutilizável ou reciclável?”.
+Essas reflexões nos ajudam a fazer escolhas melhores, tanto para o planeta quanto para a sociedade.
+
+Além de reduzir impactos ambientais, o consumo consciente também valoriza o trabalho justo e estimula a economia local. Optar por marcas que respeitam os direitos humanos, compram de pequenos produtores, usam menos embalagens ou adotam práticas ecológicas é uma forma de incentivar um mercado mais justo e sustentável. Cada vez mais, consumidores estão exigindo transparência e responsabilidade das empresas, o que também ajuda a transformar o sistema.
+
+Outro aspecto importante do consumo consciente é o uso inteligente dos recursos. Isso inclui economizar água e energia, reaproveitar alimentos, dar preferência a produtos duráveis em vez dos descartáveis, e praticar o reuso, a doação e a reciclagem. Pequenas atitudes como levar uma ecobag para o mercado, trocar roupas com amigos ou consertar um aparelho em vez de jogar fora fazem parte dessa mudança de mentalidade.
+
+Vale lembrar que consumo consciente não significa deixar de consumir, mas sim consumir com responsabilidade, propósito e consciência. É entender que cada ato de consumo tem impacto e que podemos ser agentes de transformação através das nossas escolhas.
+
+Por fim, o consumo consciente também está ligado à educação e à cidadania. Ao refletir sobre o que consumimos, também nos tornamos mais conscientes sobre nossos direitos e deveres, contribuindo para uma sociedade mais equilibrada e sustentável. Promover esse tipo de consumo é cuidar do planeta, das pessoas e do nosso próprio futuro.</p>
+    </div>
+
+    <div id="residuos" class="content-section">
+      <h2>🗑️ Gestão de Resíduos</h2>
+      <p>A gestão de resíduos é um conjunto de práticas que visa lidar de forma correta e responsável com os materiais descartados, sejam eles produzidos por residências, comércios, indústrias ou instituições. Esse processo é fundamental para reduzir os impactos negativos no meio ambiente e promover uma sociedade mais sustentável.
+
+No nosso dia a dia, geramos diferentes tipos de resíduos: embalagens, restos de alimentos, eletrônicos, móveis, entre muitos outros. Quando não são descartados corretamente, esses resíduos podem causar sérios problemas, como poluição do solo, da água e do ar, entupimento de bueiros, proliferação de doenças, além de contribuir para as mudanças climáticas.
+
+Por isso, a gestão de resíduos envolve várias etapas importantes. A primeira é a redução, que consiste em evitar o desperdício desde a origem, comprando apenas o necessário e optando por produtos duráveis e com menos embalagens. A segunda é a reutilização, que incentiva dar um novo uso para os materiais, prolongando sua vida útil. A terceira etapa é a reciclagem, onde os resíduos são transformados em matéria-prima para novos produtos. Existe ainda a compostagem, que trata dos resíduos orgânicos, transformando restos de alimentos em adubo natural.
+
+Além dessas etapas, é fundamental dar a destinação correta para os resíduos que não podem ser reciclados ou reaproveitados, chamados de rejeitos, bem como para resíduos perigosos, como pilhas, baterias, medicamentos e eletrônicos, que exigem descarte em locais apropriados.
+
+Praticar a gestão de resíduos é um ato de responsabilidade ambiental e social. Ela contribui para a preservação dos recursos naturais, a redução da poluição, a geração de empregos na cadeia da reciclagem e ainda melhora significativamente a qualidade de vida nas cidades. Separar corretamente o lixo, participar de programas de coleta seletiva, levar resíduos perigosos aos pontos de coleta e adotar hábitos de consumo consciente são atitudes que fazem toda a diferença na construção de um futuro mais sustentável para todos.</p>
+    </div>
+
+    <div id="energia" class="content-section">
+      <h2>⚡ Energia Sustentável</h2>
+      <p>Energia sustentável é aquela que é gerada de maneira a atender às necessidades atuais sem comprometer os recursos e o meio ambiente para as gerações futuras. Ela é produzida a partir de fontes renováveis, limpas e que causam baixo impacto ambiental, ao contrário das fontes de energia tradicionais, como petróleo, carvão e gás natural, que são finitas e altamente poluentes.
+
+A dependência mundial de combustíveis fósseis tem causado sérios problemas ambientais, como o aumento da emissão de gases de efeito estufa, o aquecimento global, as mudanças climáticas e a poluição do ar, da água e do solo. Por isso, a busca por alternativas sustentáveis tem se tornado cada vez mais urgente e necessária.
+
+Existem diversas fontes de energia sustentável, cada uma com suas características e aplicações. A energia solar, por exemplo, utiliza a luz do sol para gerar eletricidade ou aquecer ambientes e água. A energia eólica aproveita a força dos ventos para movimentar turbinas e gerar energia. A energia hídrica, muito utilizada no Brasil, vem da força das águas dos rios e das quedas d’água. Também há a energia de biomassa, que usa matéria orgânica como bagaço de cana, madeira e resíduos agrícolas, e a energia geotérmica, que utiliza o calor proveniente do interior da Terra. Além dessas, a energia das marés e das ondas capta a movimentação dos mares e oceanos para gerar eletricidade.
+
+Optar por fontes de energia sustentável traz inúmeros benefícios. Além de reduzir a emissão de poluentes, ajuda na preservação dos recursos naturais, na diminuição dos impactos ambientais e na geração de empregos verdes. A adoção de energia limpa também contribui para a autonomia energética dos países e das comunidades, promovendo desenvolvimento econômico sustentável.
+
+Cada pessoa pode colaborar para esse processo adotando atitudes simples no dia a dia, como economizar energia, desligar aparelhos quando não estão em uso, investir em painéis solares quando possível, apoiar empresas que utilizam energia limpa e cobrar políticas públicas que incentivem o uso de fontes renováveis. A transição para uma matriz energética sustentável é fundamental para garantir um futuro mais equilibrado, saudável e justo para toda a humanidade.</p>
+    </div>
+
+    <div id="mobilidade" class="content-section">
+      <h2>🚴 Mobilidade Sustentável</h2>
+      <p>Mobilidade sustentável é um conceito que busca promover formas de deslocamento que sejam menos poluentes, mais eficientes, acessíveis e que causem o menor impacto possível ao meio ambiente e à sociedade. Ela surge como uma resposta aos problemas causados pelos modelos tradicionais de transporte, que dependem majoritariamente de veículos movidos a combustíveis fósseis, responsáveis pela emissão de gases poluentes, congestionamentos e degradação da qualidade de vida nas cidades.
+
+O crescimento das cidades e o aumento da frota de veículos particulares têm gerado uma série de desafios, como o aumento da poluição do ar, do ruído, dos congestionamentos e do consumo de combustíveis não renováveis. Esses problemas afetam diretamente a saúde da população, contribuem para as mudanças climáticas e tornam os deslocamentos urbanos mais demorados e estressantes.
+
+A mobilidade sustentável propõe a adoção de meios de transporte que sejam mais limpos, eficientes e inclusivos. Isso inclui o uso de bicicletas, transporte coletivo de qualidade, veículos elétricos, caminhadas e até o incentivo ao compartilhamento de veículos, como caronas e aplicativos de transporte. Além disso, envolve o planejamento urbano inteligente, com ciclovias seguras, calçadas acessíveis, espaços públicos bem distribuídos e sistemas integrados de transporte.
+
+Adotar práticas de mobilidade sustentável traz benefícios tanto para o meio ambiente quanto para a sociedade. Reduz a emissão de poluentes, melhora a qualidade do ar, diminui os congestionamentos, promove a saúde física das pessoas, fortalece a economia local e torna as cidades mais agradáveis e seguras para viver.
+
+Cada pessoa pode contribuir com a mobilidade sustentável fazendo escolhas conscientes no seu dia a dia. Optar por caminhar, pedalar, utilizar transporte público, aderir ao uso de veículos elétricos ou híbridos, participar de sistemas de carona solidária e apoiar políticas públicas que priorizem o transporte coletivo e não motorizado são atitudes que fazem toda a diferença. Promover a mobilidade sustentável é um passo fundamental para construir cidades mais inteligentes, humanas e alinhadas com os princípios do desenvolvimento sustentável.</p>
+    </div>
+
+    <div id="alimentacao" class="content-section">
+      <h2>🥗 Alimentação Sustentável</h2>
+      <p>Alimentação sustentável é um modelo de consumo de alimentos que busca promover a saúde das pessoas e do planeta, considerando os impactos sociais, ambientais, econômicos e culturais de toda a cadeia produtiva. Ela está baseada em escolhas que respeitam o meio ambiente, valorizam os produtores locais, reduzem o desperdício e promovem uma alimentação mais saudável e equilibrada.
+
+O atual sistema alimentar, altamente industrializado, é responsável por grande parte da emissão de gases de efeito estufa, desmatamento, poluição dos solos e das águas, além de contribuir para a perda da biodiversidade. O uso excessivo de agrotóxicos, a produção em larga escala, o transporte de longas distâncias e o desperdício de alimentos geram enormes impactos negativos para o meio ambiente e para a sociedade.
+
+Praticar a alimentação sustentável envolve diversas ações conscientes. Uma delas é priorizar alimentos orgânicos, que são produzidos sem agrotóxicos e fertilizantes químicos, respeitando o ciclo natural do solo e da biodiversidade. Outra prática importante é consumir alimentos de produtores locais e sazonais, que além de serem mais frescos, reduzem a emissão de poluentes gerados pelo transporte e fortalecem a economia da região.
+
+Reduzir o consumo de produtos de origem animal, especialmente carnes, também faz parte da alimentação sustentável, pois a pecuária é uma das atividades que mais consome recursos naturais e emite gases de efeito estufa. Priorizar dietas baseadas em vegetais, leguminosas, grãos, frutas e verduras tem benefícios tanto para a saúde quanto para o meio ambiente.
+
+Outra atitude fundamental é combater o desperdício de alimentos, planejando melhor as compras, armazenando os alimentos corretamente, aproveitando integralmente os alimentos — incluindo cascas, talos e sementes — e reaproveitando sobras em novas preparações.
+
+Adotar uma alimentação sustentável é um ato de responsabilidade com o planeta, com a própria saúde e com a sociedade. Essa prática contribui para a preservação dos recursos naturais, a redução da poluição, o fortalecimento da agricultura familiar, a promoção da biodiversidade e a construção de um sistema alimentar mais justo, ético e equilibrado para as gerações presentes e futuras.</p>
+    </div>
+
+    <div id="preservacao" class="content-section">
+      <h2>🌳 Preservação Ambiental</h2>
+      <p>Preservação ambiental é o conjunto de ações e práticas que visam proteger os recursos naturais, conservar os ecossistemas e garantir o equilíbrio do meio ambiente para as gerações atuais e futuras. Ela busca manter os ambientes naturais em seu estado original, protegendo a fauna, a flora, os rios, as florestas, os oceanos e toda a biodiversidade, evitando a exploração desenfreada e a degradação causada pelas atividades humanas.
+
+O avanço da urbanização, o desmatamento, a poluição, a exploração excessiva dos recursos naturais e as mudanças climáticas são algumas das principais ameaças ao meio ambiente. Quando esses impactos não são controlados, comprometem não só a vida dos animais e das plantas, mas também a saúde, o bem-estar e a qualidade de vida dos seres humanos.
+
+Preservar o meio ambiente é essencial para garantir o equilíbrio dos ecossistemas, que oferecem inúmeros serviços naturais fundamentais, como a purificação do ar, a regulação do clima, a manutenção dos ciclos da água, a fertilidade do solo, a polinização das plantas e o abrigo para diversas espécies.
+
+A preservação ambiental envolve diversas ações, como proteger áreas de floresta, parques, reservas e unidades de conservação, combater o desmatamento, reduzir a emissão de poluentes, evitar a contaminação de rios e oceanos, proteger espécies ameaçadas e recuperar áreas degradadas. Além disso, também passa pela adoção de hábitos sustentáveis no dia a dia, como economizar água e energia, separar e reciclar o lixo, reduzir o uso de plásticos descartáveis e consumir de forma consciente.
+
+A participação de toda a sociedade é fundamental nesse processo. Governos, empresas, instituições e cidadãos têm o dever de colaborar com práticas que garantam a preservação do meio ambiente. Somente com responsabilidade, educação ambiental e compromisso coletivo será possível assegurar um planeta saudável, equilibrado e sustentável para as atuais e futuras gerações.</p>
+    </div>
+
+    <div id="clima" class="content-section">
+      <h2>🌡️ Mudanças Climáticas</h2>
+      <p>Mudanças climáticas são alterações significativas nos padrões de clima da Terra, que ocorrem ao longo do tempo, podendo ser causadas por processos naturais ou, principalmente, pelas atividades humanas. Atualmente, o termo está diretamente relacionado ao aquecimento global, que é o aumento da temperatura média do planeta, provocado, em grande parte, pela emissão excessiva de gases de efeito estufa.
+
+Esses gases, como dióxido de carbono (CO₂), metano (CH₄) e óxidos de nitrogênio (N₂O), são liberados na queima de combustíveis fósseis, no desmatamento, na agropecuária intensiva e em processos industriais. Eles se acumulam na atmosfera, formando uma camada que retém o calor do sol, intensificando o efeito estufa natural da Terra e elevando a temperatura global.
+
+As consequências das mudanças climáticas já são visíveis em diversas partes do mundo. A elevação das temperaturas provoca o derretimento de geleiras, o aumento do nível dos oceanos, a intensificação de eventos extremos como secas, enchentes, furacões e ondas de calor, além da perda de biodiversidade e impactos severos na agricultura, na saúde e na economia.
+
+O desmatamento, especialmente de florestas tropicais como a Amazônia, agrava ainda mais o problema, pois reduz a capacidade do planeta de absorver o dióxido de carbono da atmosfera. Ao mesmo tempo, os oceanos também vêm sofrendo, com aumento de sua temperatura, acidificação e impacto sobre os ecossistemas marinhos.
+
+Enfrentar as mudanças climáticas exige ações globais e locais. Entre as soluções estão a redução do uso de combustíveis fósseis, a transição para energias renováveis, o reflorestamento, a proteção de ecossistemas naturais, o incentivo à mobilidade sustentável, o consumo consciente e a adoção de práticas agrícolas sustentáveis.
+
+Cada pessoa também tem um papel importante nesse desafio. Reduzir o consumo de energia, economizar água, diminuir o uso de plásticos, optar por transportes menos poluentes, evitar o desperdício de alimentos e apoiar iniciativas e políticas que combatem as mudanças climáticas são atitudes fundamentais. Somente com a colaboração de todos será possível desacelerar o aquecimento global e garantir um planeta habitável e equilibrado para as gerações presentes e futuras.</p>
+    </div>
+
+    <div id="urbana" class="content-section">
+      <h2>🏙️ Sustentabilidade Urbana</h2>
+      <p>Sustentabilidade urbana é um conceito que busca tornar as cidades mais equilibradas, eficientes e agradáveis para se viver, considerando os aspectos ambientais, sociais e econômicos. Ela envolve o desenvolvimento de ambientes urbanos que utilizam de forma responsável os recursos naturais, promovem qualidade de vida para a população e reduzem os impactos negativos no meio ambiente.
+
+O crescimento desordenado das cidades, aliado ao consumo excessivo de recursos, gera problemas como poluição do ar e da água, produção excessiva de lixo, congestionamentos, ilhas de calor, enchentes e desigualdade social. A sustentabilidade urbana surge como uma solução para enfrentar esses desafios, propondo uma maneira de planejar e gerenciar os espaços urbanos de forma mais inteligente e sustentável.
+
+Entre as principais práticas associadas à sustentabilidade urbana estão o incentivo ao uso de transporte coletivo de qualidade, ciclovias, áreas verdes bem distribuídas, sistemas eficientes de coleta e reciclagem de resíduos, construções sustentáveis que economizam energia e água, além de soluções para a geração de energia limpa nas próprias cidades, como painéis solares e telhados verdes.
+
+Outro pilar fundamental da sustentabilidade urbana é a inclusão social, garantindo que todas as pessoas tenham acesso a moradia digna, educação, saúde, transporte e segurança. Cidades sustentáveis também promovem o desenvolvimento econômico local, incentivando pequenas empresas, agricultura urbana e mercados que valorizam produtores regionais.
+
+A participação da população é essencial para transformar os ambientes urbanos. Práticas como reduzir o consumo, separar corretamente os resíduos, utilizar transportes alternativos, preservar espaços públicos e participar de decisões coletivas fortalecem a construção de cidades mais sustentáveis.
+
+A sustentabilidade urbana é, portanto, um caminho para criar cidades mais resilientes, humanas e inteligentes, onde é possível conciliar desenvolvimento, bem-estar social e preservação ambiental, garantindo qualidade de vida para as gerações atuais e futuras.</p>
+    </div>
+
+    <div id="digital" class="content-section">
+      <h2>💻 Sustentabilidade Digital</h2>
+      <p>Sustentabilidade digital é o conjunto de práticas e hábitos que visam reduzir os impactos ambientais e sociais causados pelo uso crescente de tecnologias digitais, como computadores, smartphones, internet e centros de dados. Ela busca equilibrar os avanços tecnológicos com a preservação do meio ambiente e o uso consciente dos recursos naturais.
+
+Apesar de parecer algo imaterial, o mundo digital tem impactos muito reais no meio ambiente. A produção de equipamentos eletrônicos envolve a extração de minerais raros, uso de energia e geração de resíduos. Além disso, a operação de servidores, data centers, redes de internet e armazenamento em nuvem consome enormes quantidades de energia, contribuindo para a emissão de gases de efeito estufa.
+
+A sustentabilidade digital envolve várias ações importantes. Uma delas é o uso consciente dos dispositivos, prolongando sua vida útil, realizando manutenções, evitando trocas desnecessárias e destinando corretamente os equipamentos eletrônicos quando não têm mais uso, por meio da reciclagem adequada do lixo eletrônico.
+
+Outra prática fundamental é a redução do consumo de energia digital. Isso inclui desligar aparelhos quando não estão em uso, ajustar configurações para modo de economia de energia, evitar o envio excessivo de e-mails desnecessários, que também geram consumo energético nos servidores, além de limpar periodicamente arquivos na nuvem e dispositivos.
+
+Empresas e organizações também têm papel essencial na sustentabilidade digital, adotando práticas como otimização dos servidores, uso de fontes de energia renovável nos data centers, desenvolvimento de softwares mais eficientes e ações de compensação de carbono gerado pelas atividades digitais.
+
+Adotar a sustentabilidade digital também significa refletir sobre os impactos sociais, garantindo que o avanço tecnológico seja acessível, ético e responsável, combatendo a exclusão digital e promovendo a inclusão de todos na sociedade da informação.
+
+Praticar a sustentabilidade digital é entender que, embora o mundo virtual pareça invisível, ele tem uma pegada ecológica real. Por isso, utilizar a tecnologia de forma consciente e responsável é essencial para contribuir com a preservação do planeta e para construir um futuro digital mais ético, sustentável e inclusivo.</p>
+    </div>
+
+    <div id="justica" class="content-section">
+      <h2>⚖️ Justiça Social e Sustentabilidade</h2>
+      <p>Justiça social e sustentabilidade são dois conceitos profundamente interligados que, juntos, buscam construir uma sociedade mais justa, equilibrada e ambientalmente responsável. A justiça social refere-se à garantia de direitos, oportunidades e condições de vida dignas para todas as pessoas, independentemente de sua classe social, gênero, raça ou local de origem. Já a sustentabilidade envolve o uso consciente dos recursos naturais, pensando no bem-estar das gerações atuais e futuras.
+
+Uma sociedade só pode ser verdadeiramente sustentável se também for socialmente justa. Isso significa que o desenvolvimento econômico e a preservação ambiental devem caminhar junto com a redução das desigualdades sociais, a inclusão, o acesso igualitário à educação, saúde, moradia, saneamento, segurança, cultura e oportunidades de trabalho.
+
+Infelizmente, os problemas ambientais costumam afetar de forma mais intensa as populações mais vulneráveis. Comunidades pobres muitas vezes vivem em áreas com maior risco de enchentes, poluição, falta de saneamento e acesso precário aos serviços públicos. Por isso, promover a sustentabilidade também é garantir que essas populações tenham voz, participação nas decisões e acesso aos benefícios de um desenvolvimento mais equilibrado e responsável.
+
+A justiça social dentro da sustentabilidade também inclui valorizar o trabalho digno, combater qualquer forma de exploração, apoiar a economia local, fortalecer a agricultura familiar e promover a inclusão de grupos historicamente marginalizados, como mulheres, povos indígenas, quilombolas e comunidades periféricas.
+
+Empresas, governos e cidadãos têm um papel fundamental nesse processo. É necessário criar políticas públicas que combatam a desigualdade, investir em educação ambiental e social, promover práticas empresariais éticas e sustentáveis, e incentivar o consumo consciente, que leva em consideração não só o meio ambiente, mas também as condições de trabalho e os impactos sociais dos produtos e serviços.
+
+Praticar a justiça social junto com a sustentabilidade é, portanto, um caminho essencial para construir um mundo onde todas as pessoas possam viver com dignidade, em equilíbrio com a natureza, em uma sociedade mais inclusiva, igualitária e resiliente.</p>
+    </div>
+
+    <div id="politicas" class="content-section">
+      <h2>📜 Políticas Públicas e Leis Ambientais</h2>
+      <p>Políticas públicas e leis ambientais são instrumentos fundamentais para a proteção do meio ambiente e a promoção da sustentabilidade na sociedade. Elas são conjuntos de ações, normas e diretrizes criadas pelos governos, em todas as esferas — municipal, estadual e federal — com o objetivo de preservar os recursos naturais, proteger a biodiversidade, combater a poluição e garantir um desenvolvimento sustentável que beneficie toda a população.
+
+As leis ambientais estabelecem regras claras sobre como empresas, indústrias, agricultores e cidadãos devem agir em relação ao uso dos recursos naturais, ao descarte de resíduos, à preservação de áreas verdes, ao controle da emissão de poluentes e à conservação da fauna e da flora. Elas também determinam penalidades para quem descumpre essas normas, como multas, embargos e até prisão, quando há crimes ambientais.
+
+No Brasil, existem importantes leis ambientais que orientam a preservação do meio ambiente. Entre elas está a Lei da Política Nacional do Meio Ambiente, que estabelece os princípios básicos para a preservação, melhoria e recuperação da qualidade ambiental. Outra legislação relevante é o Código Florestal, que regula o uso das florestas e determina a preservação de áreas como as margens de rios e topos de morros. Também há a Política Nacional de Resíduos Sólidos, que trata da gestão adequada dos resíduos, priorizando a redução, a reutilização e a reciclagem.
+
+Além das leis, as políticas públicas ambientais incluem programas, projetos e ações voltadas para o incentivo às energias renováveis, a proteção das florestas, a preservação dos recursos hídricos, a educação ambiental, o combate às mudanças climáticas e o desenvolvimento de cidades mais sustentáveis.
+
+Essas políticas e leis só são eficazes quando há fiscalização, participação da sociedade e compromisso dos governos. A atuação de órgãos ambientais, como o IBAMA e os institutos estaduais, é essencial para monitorar e garantir que as normas sejam cumpridas. Da mesma forma, a participação da população, por meio de denúncias, mobilizações e do acompanhamento das decisões públicas, fortalece a proteção ambiental.
+
+As políticas públicas e as leis ambientais são, portanto, instrumentos indispensáveis para garantir a preservação do meio ambiente e a construção de uma sociedade mais justa, equilibrada e sustentável, onde o desenvolvimento econômico ocorra em harmonia com a natureza e com o bem-estar das pessoas.</p>
+    </div>
+
+    <div id="educacao" class="content-section">
+      <h2>📚 Educação Ambiental</h2>
+      <p>Educação ambiental é um processo que tem como objetivo formar cidadãos conscientes, informados e comprometidos com a preservação do meio ambiente e com a construção de uma sociedade mais sustentável. Ela busca desenvolver uma compreensão crítica sobre as relações entre os seres humanos e a natureza, estimulando atitudes responsáveis, éticas e solidárias em relação ao planeta.
+
+Esse tipo de educação vai muito além das salas de aula. Ela acontece em diversos espaços, como escolas, comunidades, empresas, meios de comunicação, parques e até no dia a dia das pessoas. A educação ambiental promove o conhecimento sobre os problemas ambientais, como poluição, desmatamento, mudanças climáticas, desperdício de recursos e perda de biodiversidade, além de apresentar soluções e práticas sustentáveis que podem ser adotadas individual e coletivamente.
+
+O objetivo da educação ambiental é transformar a maneira como as pessoas se relacionam com o meio ambiente, incentivando hábitos como o consumo consciente, a separação correta dos resíduos, a economia de água e energia, a proteção das áreas verdes e o respeito à fauna e à flora. Ela também estimula a participação ativa dos cidadãos na defesa de políticas públicas e na busca por soluções para os desafios ambientais.
+
+No Brasil, a educação ambiental é um direito garantido por lei, sendo obrigatória em todos os níveis de ensino, de acordo com a Política Nacional de Educação Ambiental. Essa legislação estabelece que a educação ambiental deve ser integrada de forma contínua e permanente nos processos educativos, tanto formais (em escolas e universidades) quanto não formais (em campanhas, projetos e atividades comunitárias).
+
+A educação ambiental é, portanto, uma ferramenta essencial para a construção de uma cultura de sustentabilidade. Ela forma indivíduos mais conscientes, críticos e engajados, capazes de tomar decisões que contribuam para a preservação do meio ambiente, a justiça social e o desenvolvimento sustentável. Promover a educação ambiental é investir em um futuro mais equilibrado, saudável e justo para todas as pessoas e para o planeta.</p>
+    </div>
+  </main>
+
+  <script>
+    // Navegação das abas
+    const buttons = document.querySelectorAll("nav button");
+    const sections = document.querySelectorAll(".content-section");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const target = btn.getAttribute("data-target");
+        sections.forEach(sec => {
+          sec.classList.remove("active");
+          if (sec.id === target) sec.classList.add("active");
+        });
+      });
+    });
+
+    // Dropdown Opções
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .perfil {
+      position: absolute;
+      right: 40px;
+      top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .perfil img {
+      width: 150px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 200px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .conteudo-central {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      height: calc(100vh - 160px);
+    }
+
+    h2 {
+      margin-bottom: 60px;
+      font-size: 36px;
+      color: #333;
+      text-align: center;
+    }
+
+    .opcao {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+
+    .icone {
+      width: 150px;
+      height: 150px;
+      background-color: #d9d9d9;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icone img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+
+    .opcao button {
+      width: 325px;
+      height: 150px;
+      font-size: 36px;
+      font-weight: bold;
+      border: none;
+      border-radius: 24px;
+      background-color: #d3ede7;
+      cursor: pointer;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .opcao button:hover {
+      background-color: #b9e1d5;
+    }
+
+    @media (max-width: 768px) {
+      .perfil {
+        top: 20px;
+        right: 20px;
+      }
+
+      .perfil img {
+        width: 100px;
+      }
+
+      .dropdown {
+        top: 140px;
+        right: 20px;
+      }
+
+      .opcao {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .opcao button {
+        width: 80%;
+        height: 100px;
+        font-size: 24px;
+      }
+
+      .icone {
+        width: 100px;
+        height: 100px;
+      }
+
+      .icone img {
+        width: 60%;
+        height: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">ECO<span>BUD</span></div>
+    <div class="perfil">
+      <img src="imagens/opcoes.png" alt="Menu" id="menuIcon">
+      <div class="dropdown" id="dropdownMenu">
+        <a href="perfil.html">Perfil</a>
+        <a href="#" onclick="logout()">Sair</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="conteudo-central">
+    <h2>O que deseja fazer?</h2>
+
+    <div class="opcao">
+      <div class="icone">
+        <img src="imagens/grafico.png" alt="Monitorar">
+      </div>
+      <button onclick="location.href='monitorar.html'">Monitorar</button>
+    </div>
+
+    <div class="opcao">
+      <div class="icone">
+        <img src="imagens/livro.png" alt="Aprender">
+      </div>
+      <button onclick="location.href='aprender.html'">Aprender</button>
+    </div>
+
+    <div class="opcao">
+      <div class="icone">
+        <img src="imagens/cerebro.png" alt="Quiz">
+      </div>
+      <button onclick="location.href='quiz.html'">Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const usuario = localStorage.getItem("usuario");
+    if (!usuario) {
+      window.location.href = "index.html";
+    }
+
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Educativo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .left-icons {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .home-icon, .back-icon {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .menu-labels {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .menu-box {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background-color: #397065;
+      border-radius: 20px;
+      color: white;
+      padding: 20px 25px;
+      width: 270px;
+      height: 130px;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    .menu-box.red {
+      background-color: #be3b3b;
+    }
+
+    .menu-box.purple {
+      background-color: #6c3bbe;
+    }
+
+    .menu-box img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .texto h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 0 0 5px;
+      line-height: 1.2;
+    }
+
+    .texto p {
+      font-size: 13px;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .desenho {
+      width: 800px;
+      max-width: 90%;
+    }
+
+    .curiosidade {
+      display: flex;
+      align-items: center;
+      background-color: #e7ffe7;
+      border-left: 10px solid #4ce191;
+      border-radius: 12px;
+      padding: 16px 24px;
+      max-width: 650px;
+      width: 90%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .curiosidade img {
+      width: 32px;
+      margin-right: 16px;
+    }
+
+    .curiosidade-texto strong {
+      font-size: 16px;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .curiosidade-texto p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 60px;
+      }
+
+      .left-icons {
+        top: 20px;
+        left: 20px;
+        gap: 15px;
+      }
+
+      .home-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-icon {
+        top: 20px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .menu-labels {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .menu-box {
+        width: 90%;
+      }
+
+      .desenho {
+        width: 90%;
+      }
+
+      .curiosidade {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+      }
+
+      .curiosidade img {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="left-icons">
+      <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+      <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    </div>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Menu" class="menu-icon" id="menuIcon">
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="menu-labels">
+      <a href="textos.html" class="menu-box">
+        <img src="imagens/livro.png" alt="Livro">
+        <div class="texto">
+          <h3>Textos<br>Educativos</h3>
+          <p>Artigos e dicas sobre<br>sustentabilidade</p>
+        </div>
+      </a>
+
+      <a href="videos.html" class="menu-box red">
+        <img src="imagens/play.png" alt="Play">
+        <div class="texto">
+          <h3>Vídeos no<br>Youtube</h3>
+          <p>Assista a vídeos sobre<br>Sustentabilidade</p>
+        </div>
+      </a>
+
+      <a href="videoslibras.html" class="menu-box purple">
+        <img src="imagens/libras.png" alt="Libras">
+        <div class="texto">
+          <h3>Vídeos em<br>Libras</h3>
+          <p>Assista a vídeos com<br>interpretação em Libras</p>
+        </div>
+      </a>
+    </div>
+
+    <img src="imagens/desenho.png" alt="Desenho educativo" class="desenho">
+
+    <div class="curiosidade">
+      <img src="imagens/lampada.png" alt="Curiosidade">
+      <div class="curiosidade-texto">
+        <strong>Curiosidade do dia</strong>
+        <p>Você sabia que em média uma pessoa produz 1,2kg de lixo por dia?</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

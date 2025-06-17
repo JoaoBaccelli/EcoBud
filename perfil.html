@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Perfil</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .left-icons {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .home-icon, .back-icon {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .perfil-box {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    .perfil-box h2 {
+      margin-bottom: 20px;
+      color: #397065;
+      font-size: 28px;
+    }
+
+    .perfil-item {
+      background-color: #e6eef2;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      text-align: left;
+      font-size: 18px;
+      color: #333;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .perfil-item span {
+      color: #4ce191;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 60px;
+      }
+
+      .left-icons {
+        top: 20px;
+        left: 20px;
+        gap: 15px;
+      }
+
+      .home-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-icon {
+        top: 20px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .perfil-box {
+        padding: 20px;
+      }
+
+      .perfil-box h2 {
+        font-size: 24px;
+      }
+
+      .perfil-item {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="left-icons">
+      <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+      <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    </div>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Menu" class="menu-icon" id="menuIcon">
+    <div class="dropdown" id="dropdownMenu">
+      <a href="perfil.html">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="perfil-box">
+      <h2>Perfil do Usuário</h2>
+      <div class="perfil-item">
+        <strong>Nome de usuário:</strong> <span id="nomeUsuario">EcobudSupport</span>
+      </div>
+      <div class="perfil-item">
+        <strong>Email:</strong> <span id="emailUsuario">admin@ecobud.com</span>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
+
+    // Simulação de dados armazenados (você pode alterar isso conforme seu backend)
+    const usuario = JSON.parse(localStorage.getItem("usuario")) || {
+      nome: "Fulano da Silva",
+      email: "fulano@email.com"
+    };
+
+    document.getElementById('nomeUsuario').textContent = usuario.nome;
+    document.getElementById('emailUsuario').textContent = usuario.email;
+  </script>
+</body>
+</html>

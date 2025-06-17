@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Monitorar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .left-icons {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .home-icon, .back-icon {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    h1 {
+      color: #397065;
+      font-size: 48px;
+    }
+
+    .inputs-container {
+      display: flex;
+      gap: 80px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .column h2 {
+      color: #397065;
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
+
+    label {
+      font-size: 18px;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    input {
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: none;
+      background-color: #d9d9d9;
+      width: 110px;
+      font-size: 18px;
+    }
+
+    .botao-comparar {
+      background-color: #d8eee4;
+      border: none;
+      padding: 18px 60px;
+      border-radius: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .botao-comparar:hover {
+      background-color: #c5e0d4;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 60px;
+      }
+
+      .left-icons {
+        top: 20px;
+        left: 20px;
+        gap: 15px;
+      }
+
+      .home-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-icon {
+        top: 20px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .inputs-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .column h2 {
+        font-size: 22px;
+      }
+
+      label {
+        font-size: 16px;
+      }
+
+      input {
+        width: 100px;
+        font-size: 16px;
+      }
+
+      .botao-comparar {
+        font-size: 24px;
+        padding: 16px 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="left-icons">
+      <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+      <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    </div>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Menu" class="menu-icon" id="menuIcon">
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Resultados</h1>
+
+    <div class="inputs-container">
+      <div class="column">
+        <h2>Antes</h2>
+        <label>Mês 1 <input type="text"></label>
+        <label>Ano 1 <input type="text"></label>
+      </div>
+
+      <div class="column">
+        <h2>Depois</h2>
+        <label>Mês 1 <input type="text"></label>
+        <label>Ano 2 <input type="text"></label>
+      </div>
+    </div>
+
+    <button class="botao-comparar"onclick="window.location.href='comparar.html'">Comparar</button>
+  </main>
+
+  <script>
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

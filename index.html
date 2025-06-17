@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .planta-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+      max-width: none;
+    }
+
+    .form-wrapper {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 96px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .subtitle {
+      font-size: 36px;
+      font-weight: 600;
+      color: #397065;
+      margin-bottom: 40px;
+    }
+
+    input {
+      width: 400px;
+      padding: 20px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      background-color: #d9e9ff;
+      font-size: 20px;
+      outline: none;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      width: 400px;
+      margin-top: 20px;
+    }
+
+    .button, .register-button {
+      width: 195px;
+      padding: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button {
+      background-color: #84f4a2;
+      color: #000;
+    }
+
+    .button:hover {
+      background-color: #6be690;
+    }
+
+    .register-button {
+      background-color: #4ce191;
+      color: #fff;
+    }
+
+    .register-button:hover {
+      background-color: #3dd281;
+    }
+
+    .erro {
+      color: red;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      input {
+        width: 90%;
+        font-size: 18px;
+        padding: 16px;
+      }
+
+      .button-container {
+        flex-direction: column;
+        width: 90%;
+      }
+
+      .button, .register-button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .logo {
+        font-size: 60px;
+      }
+
+      .subtitle {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="imagens/planta.png" alt="Planta de fundo" class="planta-bg">
+
+  <div class="form-wrapper">
+    <div class="logo">ECO<span>BUD</span></div>
+    <div class="subtitle">Seja Bem-Vindo!</div>
+    
+    <form id="formLogin">
+      <input id="email" type="email" placeholder="e-mail" required><br>
+      <input id="senha" type="password" placeholder="Senha" required><br>
+
+      <div class="button-container">
+        <button class="register-button" type="button" onclick="window.location.href='cadastro.html'">Cadastrar-se</button>
+        <button class="button" type="submit">Entrar</button>
+      </div>
+    </form>
+
+    <div id="mensagemErro" class="erro"></div>
+  </div>
+
+  <script>
+    document.getElementById("formLogin").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const erro = document.getElementById("mensagemErro");
+
+      if (!email || !senha) {
+        erro.textContent = "Preencha todos os campos corretamente.";
+        return;
+      }
+
+      if (email === "admin@ecobud.com" && senha === "admin") {
+        localStorage.setItem("usuario", email);
+        window.location.href = "home.html"; // ou home.html, se for esse o nome do arquivo de destino
+      } else {
+        erro.textContent = "E-mail ou senha inválidos.";
+      }
+    });
+  </script>
+
+</body>
+</html>
+

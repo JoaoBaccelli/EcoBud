@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Vídeos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .home-icon, .back-icon, .perfil-icon {
+      position: absolute;
+      top: 40px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .home-icon {
+      left: 40px;
+    }
+
+    .back-icon {
+      left: 110px;
+    }
+
+    .perfil-icon {
+      right: 40px;
+      width: 170px;
+      height: 170px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .titulo-videos {
+      font-size: 72px;
+      color: #397065;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 380px);
+      gap: 30px 50px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #397065;
+      border-radius: 24px;
+      width: 380px;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      color: white;
+      text-decoration: none;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .card:hover {
+      background-color: #315c55;
+    }
+
+    .card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+    }
+
+    .card-text {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 850px) {
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .card img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .card-text {
+        font-size: 18px;
+      }
+
+      .titulo-videos {
+        font-size: 60px;
+      }
+
+      .home-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+        top: 20px;
+      }
+
+      .perfil-icon {
+        top: 20px;
+        right: 20px;
+        width: 120px;
+        height: 120px;
+      }
+
+      .home-icon {
+        left: 20px;
+      }
+
+      .back-icon {
+        left: 80px;
+      }
+
+      .logo {
+        font-size: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+    <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Opções" class="perfil-icon">
+  </header>
+
+  <main>
+    <div class="titulo-videos">Vídeos</div>
+
+    <div class="videos-grid">
+      <a href="https://www.youtube.com/watch?v=3HWiXG877Gs" target="_blank" class="card">
+        <img src="imagens/sacola.png" alt="Sacola">
+        <div class="card-text">Como reduzir seu consumo de plástico</div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=MhpRedd8HkY" target="_blank" class="card">
+        <img src="imagens/circulo.png" alt="ODS">
+        <div class="card-text">O que são os ODS?</div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=H1dbzFPjZL8" target="_blank" class="card">
+        <img src="imagens/calendario.png" alt="Calendário">
+        <div class="card-text">5 hábitos sustentáveis para o dia a dia</div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=Ekbd_hSQOhc" target="_blank" class="card">
+        <img src="imagens/arvore.png" alt="Árvore">
+        <div class="card-text">Preservando a natureza</div>
+      </a>
+    </div>
+  </main>
+
+</body>
+</html>

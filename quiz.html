@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoBud - Quiz</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e6eef2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 40px 0 20px;
+    }
+
+    .logo {
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo span {
+      color: #4ce191;
+    }
+
+    .left-icons {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .home-icon, .back-icon {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 10px 0;
+      width: 180px;
+      z-index: 999;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .titulo {
+      font-size: 70px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+
+    .icon-pergunta {
+      width: 100px;
+      height: 100px;
+      background-color: #93f8b7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .icon-pergunta img {
+      width: 60%;
+      height: 60%;
+    }
+
+    .botao-iniciar {
+      background-color: #93f8b7;
+      padding: 18px 50px;
+      border-radius: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: black;
+      border: none;
+      cursor: pointer;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .botao-iniciar:hover {
+      background-color: #7de3a3;
+    }
+
+    .info {
+      display: flex;
+      justify-content: center;
+      gap: 100px;
+      font-weight: bold;
+      color: black;
+      font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 60px;
+      }
+
+      .left-icons {
+        top: 20px;
+        left: 20px;
+        gap: 15px;
+      }
+
+      .home-icon, .back-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-icon {
+        top: 20px;
+        width: 100px;
+        height: 100px;
+      }
+
+      .titulo {
+        font-size: 50px;
+      }
+
+      .subtitulo {
+        font-size: 18px;
+      }
+
+      .botao-iniciar {
+        padding: 15px 40px;
+        font-size: 24px;
+      }
+
+      .info {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="left-icons">
+      <a href="home.html"><img src="imagens/home.png" alt="Home" class="home-icon"></a>
+      <a href="javascript:history.back()"><img src="imagens/voltar.png" alt="Voltar" class="back-icon"></a>
+    </div>
+    <div class="logo">ECO<span>BUD</span></div>
+    <img src="imagens/opcoes.png" alt="Menu" class="menu-icon" id="menuIcon">
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#">Perfil</a>
+      <a href="#">Configurações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="titulo">Quiz</div>
+    <div class="subtitulo">Teste seu conhecimentos sobre sustentabilidade.</div>
+
+    <div class="icon-pergunta">
+      <img src="imagens/lampada.png" alt="Icone Quiz">
+    </div>
+
+    <button class="botao-iniciar" onclick="window.location.href='perguntas.html'">Iniciar Quiz</button>
+
+    <div class="info">
+      <div>Pontuação: <span id="pontuacao">0</span></div>
+      <div>Recompensas:</div>
+    </div>
+  </main>
+
+  <script>
+    const menuIcon = document.getElementById("menuIcon");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    menuIcon.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menuIcon.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("usuario");
+      localStorage.removeItem("pontuacao"); // Opcional: limpar pontuação ao sair
+      window.location.href = "index.html";
+    }
+
+    function carregarPontuacao() {
+      const pontos = localStorage.getItem('pontuacao') || 0;
+      document.getElementById('pontuacao').textContent = pontos;
+    }
+
+    window.onload = function() {
+        const pontuacao = localStorage.getItem('pontuacaoQuiz') || 0;
+        document.getElementById('pontuacao').textContent = pontuacao;
+    };
+
+  </script>
+</body>
+</html>
