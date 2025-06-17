@@ -1,0 +1,1 @@
+Este é um site destinado para aqueles que desejam aprender sobre sustentabilidade com leituras, videos e quizzes. Além disso o usuário pode inserir os dados de consumo mensais (água e luz) para visualizar as mudanças em cada mês
